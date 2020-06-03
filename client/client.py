@@ -19,11 +19,14 @@ with open(logfile, "w") as f:
 
 def test():
 	start = datetime.datetime.now()
-	req = requests.get("http://nettester.jakoblj.xyz")
+	try:
+		req = requests.get("http://nettester.jakoblj.xyz")
+		res = req.json()
+	except:
+			res = {'Hello':'nah', 'time': 0}
 	end = datetime.datetime.now()
 	diff = end - start
 	t = diff.microseconds/1000
-	res = req.json()
 	return {'suc': res['Hello'] == 'World', 'time':t}
 	#return {'suc': False, 'time': 10.5}
 
