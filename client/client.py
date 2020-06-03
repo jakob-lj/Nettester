@@ -14,6 +14,9 @@ except:
 logfile = 'logs/%s/%s/log.dat' % (today, now)
 resultFile = 'logs/%s/%s/result.dat' % (today, now)
 
+with open(logfile, "w") as f:
+	f.write("Started server at %s\n" % datetime.datetime.now())
+
 def test():
 	start = datetime.datetime.now()
 	req = requests.get("http://nettester.jakoblj.xyz")
@@ -27,7 +30,7 @@ def test():
 def log(msg):
 	print(msg)
 	with open(logfile, 'a') as f:
-		f.write(msg)		
+		f.write(msg + "\n")		
 
 def finallog():
 	testEnd = datetime.datetime.now()
@@ -91,8 +94,7 @@ if (__name__ == '__main__'):
 	testStart = datetime.datetime.now()
 	try:
 		main()
-		finallog()
-	except Exception as e:
-		print(e)
-		print("\n")
+	except KeyboardInterrupt as e:
+		print("Finishing up")
 		finallog()		
+	
