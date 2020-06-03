@@ -6,8 +6,9 @@ import os
 now = str(datetime.datetime.now()).split(" ")[1]
 today = str(datetime.date.today())
 try:
+	os.system("mkdir logs")
 	os.system("mkdir logs/%s" % today)
-	os.system("mkdir logs/%s/%s/" (today, now))
+	os.system("mkdir logs/%s/%s/" % (today, now))
 except:
 	pass
 logfile = 'logs/%s/%s/log.dat' % (today, now)
